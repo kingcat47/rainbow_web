@@ -1,0 +1,126 @@
+// FAQ 섹션
+.faq_section {
+  width: calc(100% + 32px);
+  padding: 80px 24px;
+  display: flex;
+  justify-content: center;
+  background-color: #111111;
+  margin-left: -16px;
+  margin-right: -16px;
+}
+
+.faq_wrapper {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.faq_title {
+  font-size: 48px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.faq_list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq_item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.faq_question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  span {
+    flex: 1;
+  }
+}
+
+.faq_icon {
+  width: 20px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.faq_icon_open {
+  transform: rotate(180deg);
+}
+
+.faq_answer {
+  padding: 0 24px 20px 24px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+  .faq_section {
+    padding: 60px 16px;
+    width: calc(100% + 32px);
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .faq_title {
+    font-size: 32px;
+  }
+
+  .faq_question {
+    font-size: 16px;
+    padding: 16px 20px;
+  }
+
+  .faq_answer {
+    font-size: 14px;
+    padding: 0 20px 16px 20px;
+  }
+}

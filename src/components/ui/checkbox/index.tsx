@@ -10,7 +10,7 @@ import {
 } from "react";
 
 import { Typo } from "@/components/ui";
-import s from "./style.module.scss";
+import s from "./styles.module.scss";
 
 export type CheckboxSize = "sm" | "md" | "lg";
 
@@ -63,7 +63,7 @@ export default function Checkbox(props: CheckboxProps) {
 
   const isControlled = typeof checked === "boolean";
   const [internalChecked, setInternalChecked] = useState<boolean>(
-    Boolean(defaultChecked),
+    Boolean(defaultChecked)
   );
   const currentChecked = isControlled ? Boolean(checked) : internalChecked;
 
@@ -131,11 +131,7 @@ export default function Checkbox(props: CheckboxProps) {
 
       {(label || description || error) && (
         <span className={s.texts}>
-          {label && (
-            <Typo.Body className={s.label}>
-              {label}
-            </Typo.Body>
-          )}
+          {label && <Typo.Body className={s.label}>{label}</Typo.Body>}
           {description && (
             <Typo.Caption id={descriptionId} className={s.description}>
               {description}

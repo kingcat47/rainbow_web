@@ -1,189 +1,189 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    
-    &.fullWidth {
-      width: 100%;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &.fullWidth {
+    width: 100%;
   }
-  
-  .label {
-    font-size: 14px;
-    font-weight: 500;
-    color: $color-text;
-    margin-bottom: 2px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 2px;
 }
 
 .required {
-    color: #ff4444;
-    margin-left: 2px;
+  color: #ff4444;
+  margin-left: 2px;
 }
-  
-  .inputWrapper {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 14px;
-    border: 1px solid $color-border;
-    background-color: $color-surface;
-    transition: all 0.2s ease-in-out;
-    position: relative;
-    overflow: hidden;
-    
-    &:focus-within {
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(69, 193, 255, 0.3);
-      border-color: $color-surface-brand;
-    }
-  
-    &:hover:not(.disabled) {
-      border-color: $color-border;
-      background-color: $color-surface;
-    }
-  
-    // Size variants
-    &.medium {
-      padding: 10px 16px;
-      border-radius: 14px;
-      min-height: 40px;
-  
-      &.fullWidth {
-        width: 100%;
-      }
-  
-      &.hasLeftIcon {
-        padding-left: 12px;
-      }
-  
-      &.hasRightIcon {
-        padding-right: 12px;
-      }
-    }
-  
-    &.large {
-      padding: 14px 20px;
-      border-radius: 18px;
-      min-height: 48px;
-  
-      &.fullWidth {
-        width: 100%;
-      }
-  
-      &.hasLeftIcon {
-        padding-left: 20px;
-      }
-  
-      &.hasRightIcon {
-        padding-right: 20px;
-      }
-    }
-  
-    // Variant styles
-    &.primary {
-      border-color: $color-border;
-      
-      &:focus-within {
-        border-color: $color-surface-brand;
-        box-shadow: 0 0 0 2px rgba(69, 193, 255, 0.3);
-      }
-    }
-  
-    &.secondary {
-      background-color: $color-surface-subtle;
-      border-color: $color-border;
-      
-      &:focus-within {
-        background-color: $color-surface;
-        border-color: $color-surface-brand;
-        box-shadow: 0 0 0 2px rgba(69, 193, 255, 0.3);
-      }
-    }
-  
-    // Error state
-    &.error {
-      border-color: #ff4444;
-      
-      &:focus-within {
-        border-color: #ff4444;
-        box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.3);
-      }
-    }
-  
-    // Disabled state
-    &.disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      background-color: $color-surface-subtle;
-      
-      &.primary {
-        background-color: $color-surface-subtle;
-      }
-      
-      &.secondary {
-        background-color: $color-surface-subtle;
-      }
-    }
-  }
-  
-  .input {
-    flex: 1;
-    border: none;
+
+.inputWrapper {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 14px;
+  border: 1px solid #e8e8e8;
+  background-color: #ffffff;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+
+  &:focus-within {
     outline: none;
-    background: transparent;
-    font-size: 14px;
-    line-height: 1.4;
-    color: $color-text;
-    
-    &::placeholder {
-      color: $color-text-subtle;
-    }
-  
-    &:disabled {
-      cursor: not-allowed;
-      color: $color-text-subtle;
-    }
-  
-    .large & {
-      font-size: 16px;
-      line-height: 1.5;
-    }
+    box-shadow: 0 0 0 2px rgba(69, 193, 255, 0.3);
+    border-color: #45c1ff;
   }
-  
-  .leftIcon,
-  .rightIcon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $color-text-subtle;
-    transition: color 0.2s ease-in-out;
-    
-    svg {
-      width: 16px;
-      height: 16px;
+
+  &:hover:not(.disabled) {
+    border-color: #e8e8e8;
+    background-color: #ffffff;
+  }
+
+  // Size variants
+  &.medium {
+    padding: 10px 16px;
+    border-radius: 14px;
+    min-height: 40px;
+
+    &.fullWidth {
+      width: 100%;
     }
-  
-    .large & svg {
-      width: 18px;
-      height: 18px;
+
+    &.hasLeftIcon {
+      padding-left: 12px;
+    }
+
+    &.hasRightIcon {
+      padding-right: 12px;
     }
   }
-  
-  .leftIcon {
-    margin-right: 8px;
+
+  &.large {
+    padding: 14px 20px;
+    border-radius: 18px;
+    min-height: 48px;
+
+    &.fullWidth {
+      width: 100%;
+    }
+
+    &.hasLeftIcon {
+      padding-left: 20px;
+    }
+
+    &.hasRightIcon {
+      padding-right: 20px;
+    }
   }
-  
-  .rightIcon {
-    margin-left: 8px;
+
+  // Variant styles
+  &.primary {
+    border-color: #e8e8e8;
+
+    &:focus-within {
+      border-color: #45c1ff;
+      box-shadow: 0 0 0 2px rgba(69, 193, 255, 0.3);
+    }
   }
-  
-  .inputWrapper:focus-within .leftIcon,
-  .inputWrapper:focus-within .rightIcon {
-    color: $color-surface-brand;
+
+  &.secondary {
+    background-color: #f5f5f5;
+    border-color: #e8e8e8;
+
+    &:focus-within {
+      background-color: #ffffff;
+      border-color: #45c1ff;
+      box-shadow: 0 0 0 2px rgba(69, 193, 255, 0.3);
+    }
   }
-  
-  .errorMessage {
-    font-size: 12px;
-    color: #ff4444;
-    margin-top: 2px;
-    font-weight: 400;
+
+  // Error state
+  &.error {
+    border-color: #ff4444;
+
+    &:focus-within {
+      border-color: #ff4444;
+      box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.3);
+    }
   }
+
+  // Disabled state
+  &.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+
+    &.primary {
+      background-color: #f5f5f5;
+    }
+
+    &.secondary {
+      background-color: #f5f5f5;
+    }
+  }
+}
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #000000;
+
+  &::placeholder {
+    color: #7d7d7d;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: #7d7d7d;
+  }
+
+  .large & {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+.leftIcon,
+.rightIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7d7d7d;
+  transition: color 0.2s ease-in-out;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .large & svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.leftIcon {
+  margin-right: 8px;
+}
+
+.rightIcon {
+  margin-left: 8px;
+}
+
+.inputWrapper:focus-within .leftIcon,
+.inputWrapper:focus-within .rightIcon {
+  color: #45c1ff;
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: #ff4444;
+  margin-top: 2px;
+  font-weight: 400;
+}

@@ -1,6 +1,6 @@
 import { forwardRef, type InputHTMLAttributes, type ReactNode } from "react";
 
-import s from "./style.module.scss";
+import s from "./styles.module.scss";
 
 export interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
@@ -29,7 +29,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       required = false,
       ...props
     },
-    ref,
+    ref
   ) => {
     const inputWrapperClassName = [
       s.inputWrapper,
@@ -67,7 +67,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {error && <div className={s.errorMessage}>{error}</div>}
       </div>
     );
-  },
+  }
 );
 
 Input.displayName = "Input";
