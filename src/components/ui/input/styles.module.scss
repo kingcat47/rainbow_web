@@ -32,8 +32,8 @@
 
   &:focus-within {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(69, 193, 255, 0.3);
-    border-color: #45c1ff;
+    box-shadow: 0 0 0 2px rgba(0, 246, 157, 0.3);
+    border-color: #00f69d;
   }
 
   &:hover:not(.disabled) {
@@ -83,8 +83,8 @@
     border-color: #e8e8e8;
 
     &:focus-within {
-      border-color: #45c1ff;
-      box-shadow: 0 0 0 2px rgba(69, 193, 255, 0.3);
+      border-color: #00f69d;
+      box-shadow: 0 0 0 2px rgba(0, 246, 157, 0.3);
     }
   }
 
@@ -94,8 +94,8 @@
 
     &:focus-within {
       background-color: #ffffff;
-      border-color: #45c1ff;
-      box-shadow: 0 0 0 2px rgba(69, 193, 255, 0.3);
+      border-color: #00f69d;
+      box-shadow: 0 0 0 2px rgba(0, 246, 157, 0.3);
     }
   }
 
@@ -178,7 +178,7 @@
 
 .inputWrapper:focus-within .leftIcon,
 .inputWrapper:focus-within .rightIcon {
-  color: #45c1ff;
+  color: #00f69d;
 }
 
 .errorMessage {

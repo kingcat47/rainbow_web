@@ -109,14 +109,14 @@
 }
 
 .input:focus-visible + .box {
-  box-shadow: 0 0 0 4px rgba(69, 193, 255, 0.18);
-  border-color: #45c1ff;
+  box-shadow: 0 0 0 4px rgba(0, 246, 157, 0.18);
+  border-color: #00f69d;
 }
 
 .input:checked + .box,
 .box[data-checked="true"] {
-  background: #45c1ff;
-  border-color: #45c1ff;
+  background: #00f69d;
+  border-color: #00f69d;
   color: white;
   border: 0;
 }

@@ -1,0 +1,362 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  text-align: center;
+  max-width: 600px;
+  align-self: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section_title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.section_description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+// 프로필 이미지 섹션
+.avatar_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.avatar_placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+  }
+
+  svg {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+// 폼 그리드
+.form_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+// 텍스트 영역
+.textarea_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.textarea_label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.required {
+  color: #ff4444;
+  margin-left: 2px;
+}
+
+.textarea {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.6;
+  font-family: "Pretendard", sans-serif;
+  resize: vertical;
+  transition: all 0.2s ease;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #00f69d;
+    box-shadow: 0 0 0 2px rgba(0, 246, 157, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  &:hover:not(:focus) {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+// 관심사 그리드
+.interests_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.interest_card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  // 체크박스 스타일 오버라이드 (다크 테마)
+  :global(.wrapper) {
+    color: #ffffff !important;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  // 체크박스가 체크되지 않은 상태
+  :global(.box) {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+
+  // 체크박스가 체크된 상태일 때
+  :global(input:checked + .box) {
+    background: #00f69d !important;
+    border-color: #00f69d !important;
+  }
+
+  // 체크박스 아이콘 색상 (체크 마크)
+  :global(.icon) {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+  }
+
+  // 체크된 상태의 아이콘 색상 (밝은 배경에 검정 아이콘)
+  :global(input:checked + .box .icon) {
+    color: #000000 !important;
+    stroke: #000000 !important;
+    fill: #000000 !important;
+  }
+
+  // 호버 시 체크박스 박스 스타일
+  &:hover :global(.box) {
+    border-color: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  // 텍스트 컨테이너
+  :global(.texts) {
+    color: #ffffff !important;
+  }
+
+  // 체크박스 라벨 스타일
+  :global(.label),
+  :global(.texts .label) {
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  // 체크박스 설명 스타일
+  :global(.description),
+  :global(.texts .description) {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  // Typo 컴포넌트 스타일 오버라이드
+  :global(.texts *) {
+    color: inherit !important;
+  }
+
+  // 포커스 상태
+  :global(input:focus-visible + .box) {
+    box-shadow: 0 0 0 4px rgba(0, 246, 157, 0.2) !important;
+    border-color: #00f69d !important;
+  }
+}
+
+// Input 컴포넌트 다크 테마 오버라이드
+.form_grid :global(.container) {
+  :global(.label) {
+    color: #ffffff !important;
+  }
+
+  :global(.inputWrapper) {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+
+    &:hover:not(.disabled) {
+      border-color: rgba(255, 255, 255, 0.3) !important;
+    }
+  }
+
+  :global(input) {
+    color: #ffffff !important;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.4) !important;
+    }
+  }
+}
+
+// Button secondary 다크 테마 오버라이드
+.avatar_section :global(.button.secondary) {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+
+  &:hover:not(.disabled) {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+  }
+}
+
+.action_buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+  max-width: 400px;
+  align-self: center;
+  width: 100%;
+}
+
+// 반응형 디자인
+@media (max-width: 1024px) {
+  .interests_grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+
+  .interest_card {
+    padding: 20px;
+  }
+
+  .form_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 0;
+  }
+
+  .content {
+    gap: 32px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .form {
+    gap: 32px;
+  }
+
+  .section_title {
+    font-size: 20px;
+  }
+
+  .section_description {
+    font-size: 14px;
+  }
+
+  .avatar_section {
+    padding: 24px;
+  }
+
+  .avatar_placeholder {
+    width: 100px;
+    height: 100px;
+
+    svg {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .interests_grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .interest_card {
+    padding: 20px;
+  }
+
+  .form_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action_buttons {
+    max-width: 100%;
+  }
+}
