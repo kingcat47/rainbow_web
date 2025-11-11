@@ -1,86 +1,95 @@
+import { useRef, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import GradientText from "@/components/react-bits/gradientText";
-import Start from "@/components/page/home/start";
 
 export default function Section1() {
+  const localVideoRef = useRef<HTMLVideoElement>(null);
+  const remoteVideoRef = useRef<HTMLVideoElement>(null);
+  const [localStream, setLocalStream] = useState<MediaStream | null>(null);
+  const [remoteStream, setRemoteStream] = useState<MediaStream | null>(null);
+
+  useEffect(() => {
+    // 사용자 카메라 스트림 가져오기
+    const getLocalStream = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: true,
+        });
+        setLocalStream(stream);
+        if (localVideoRef.current) {
+          localVideoRef.current.srcObject = stream;
+        }
+      } catch (error) {
+        console.error("카메라 접근 실패:", error);
+      }
+    };
+
+    getLocalStream();
+
+    // cleanup
+    return () => {
+      if (localStream) {
+        localStream.getTracks().forEach((track) => track.stop());
+      }
+      if (remoteStream) {
+        remoteStream.getTracks().forEach((track) => track.stop());
+      }
+    };
+  }, []);
+
   return (
     <div className={styles.container}>
-      <div className={styles.main}>
-        {/* 왼쪽: 히어로 섹션 */}
-        <div className={styles.hero_section}>
-          <div className={styles.hero_content}>
-            <h1 className={styles.hero_title}>
-              취향이 통하는 사람들과
-              <br />
-              <GradientText
-                colors={["#00F69D", "#4079FF", "#00F69D", "#4079FF"]}
-                animationSpeed={3}
-                showBorder={false}
-              >
-                진짜 대화를 시작하세요
-              </GradientText>
-            </h1>
-            <p className={styles.hero_description}>
-              레인보우는 당신의 취향 코드를 분석해
-              <br />
-              대화 코드가 맞는 사람과 연결해드립니다.
-              <br />
-              외모 부담 없이, 대화에만 집중하세요.
-            </p>
-            <div className={styles.hero_button}>
-              <Start />
-            </div>
+      <div className={styles.video_grid}>
+        {/* 왼쪽: 본인 화면 */}
+        <div className={styles.local_section}>
+          <div className={styles.video_wrapper}>
+            <video
+              ref={localVideoRef}
+              className={styles.video}
+              autoPlay
+              muted
+              playsInline
+            />
+            {!localStream && (
+              <div className={styles.placeholder}>
+                <div className={styles.placeholder_content}>
+                  <div className={styles.connecting_animation}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <p className={styles.placeholder_text}>카메라 로딩 중...</p>
+                </div>
+              </div>
+            )}
+            <div className={styles.video_label}>나</div>
           </div>
         </div>
 
-        {/* 오른쪽: 비디오 프리뷰 섹션 */}
-        <div className={styles.preview_section}>
-          <div className={styles.video_preview}>
-            {/* 비디오 컨테이너 */}
-            <div className={styles.video_container}>
-              <div className={styles.video_placeholder}>
-                {/* 배경 그라데이션 애니메이션 */}
-                <div className={styles.animated_background}></div>
-
-                {/* 사용자 아바타들 (오버레이) */}
-
-                {/* 중앙 콘텐츠 */}
-                <div className={styles.video_overlay}>
-                  <div className={styles.central_content}>
-                    <div className={styles.play_button}>
-                      <svg
-                        width="70"
-                        height="70"
-                        viewBox="0 0 70 70"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <circle
-                          cx="35"
-                          cy="35"
-                          r="35"
-                          fill="rgba(255, 255, 255, 0.95)"
-                        />
-                        <path d="M28 22L48 35L28 48V22Z" fill="#000" />
-                      </svg>
-                    </div>
+        {/* 오른쪽: 상대방 화면 */}
+        <div className={styles.remote_section}>
+          <div className={styles.video_wrapper}>
+            <video
+              ref={remoteVideoRef}
+              className={styles.video}
+              autoPlay
+              playsInline
+            />
+            {!remoteStream && (
+              <div className={styles.placeholder}>
+                <div className={styles.placeholder_content}>
+                  <div className={styles.connecting_animation}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                   </div>
-                </div>
-
-                {/* LIVE 배지 */}
-                <div className={styles.live_badge}>
-                  <span className={styles.live_dot}></span>
-                  <span>LIVE</span>
-                </div>
-
-                {/* 연결 중 애니메이션 */}
-                <div className={styles.connecting_dots}>
-                  <span></span>
-                  <span></span>
-                  <span></span>
+                  <p className={styles.placeholder_text}>
+                    상대방 연결 대기 중...
+                  </p>
                 </div>
               </div>
-            </div>
+            )}
+            <div className={styles.video_label}>상대방</div>
           </div>
         </div>
       </div>

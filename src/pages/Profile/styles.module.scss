@@ -147,103 +147,8 @@
   }
 }
 
-// 관심사 그리드
-.interests_grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-}
-
-.interest_card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 24px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-  }
-
-  // 체크박스 스타일 오버라이드 (다크 테마)
-  :global(.wrapper) {
-    color: #ffffff !important;
-    width: 100%;
-    align-items: flex-start;
-  }
-
-  // 체크박스가 체크되지 않은 상태
-  :global(.box) {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  }
-
-  // 체크박스가 체크된 상태일 때
-  :global(input:checked + .box) {
-    background: #00f69d !important;
-    border-color: #00f69d !important;
-  }
-
-  // 체크박스 아이콘 색상 (체크 마크)
-  :global(.icon) {
-    color: #ffffff !important;
-    stroke: #ffffff !important;
-  }
-
-  // 체크된 상태의 아이콘 색상 (밝은 배경에 검정 아이콘)
-  :global(input:checked + .box .icon) {
-    color: #000000 !important;
-    stroke: #000000 !important;
-    fill: #000000 !important;
-  }
-
-  // 호버 시 체크박스 박스 스타일
-  &:hover :global(.box) {
-    border-color: rgba(255, 255, 255, 0.4) !important;
-  }
-
-  // 텍스트 컨테이너
-  :global(.texts) {
-    color: #ffffff !important;
-  }
-
-  // 체크박스 라벨 스타일
-  :global(.label),
-  :global(.texts .label) {
-    color: #ffffff !important;
-    font-weight: 600;
-    font-size: 18px;
-  }
-
-  // 체크박스 설명 스타일
-  :global(.description),
-  :global(.texts .description) {
-    color: rgba(255, 255, 255, 0.6) !important;
-    font-size: 14px;
-    margin-top: 4px;
-  }
-
-  // Typo 컴포넌트 스타일 오버라이드
-  :global(.texts *) {
-    color: inherit !important;
-  }
-
-  // 포커스 상태
-  :global(input:focus-visible + .box) {
-    box-shadow: 0 0 0 4px rgba(0, 246, 157, 0.2) !important;
-    border-color: #00f69d !important;
-  }
-}
-
 // Input 컴포넌트 다크 테마 오버라이드
-.form_grid :global(.container) {
-  :global(.label) {
-    color: #ffffff !important;
-  }
-
+.section :global(.container) {
   :global(.inputWrapper) {
     background: rgba(255, 255, 255, 0.05) !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
@@ -286,15 +191,6 @@
 
 // 반응형 디자인
 @media (max-width: 1024px) {
-  .interests_grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 12px;
-  }
-
-  .interest_card {
-    padding: 20px;
-  }
-
   .form_grid {
     grid-template-columns: 1fr;
   }
@@ -341,15 +237,6 @@
       width: 50px;
       height: 50px;
     }
-  }
-
-  .interests_grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .interest_card {
-    padding: 20px;
   }
 
   .form_grid {

@@ -2,7 +2,8 @@ import { useState } from "react";
 import Header from "@/components/layout/header";
 import MainLayout from "@/components/layout/main";
 import Input from "@/components/ui/input";
-import Checkbox from "@/components/ui/checkbox";
+import Category from "@/components/ui/category";
+import { categories } from "@/components/ui/category/data";
 import Button from "@/components/ui/button";
 import styles from "./styles.module.scss";
 
@@ -10,78 +11,6 @@ export default function Profile() {
   const [nickname, setNickname] = useState("");
   const [age, setAge] = useState("");
   const [bio, setBio] = useState("");
-  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
-
-  const interests = [
-    {
-      id: "music",
-      label: "음악",
-      description: "다양한 음악 장르를 좋아합니다",
-    },
-    {
-      id: "movie",
-      label: "영화/드라마",
-      description: "영화와 드라마를 즐깁니다",
-    },
-    {
-      id: "game",
-      label: "게임",
-      description: "게임을 즐깁니다",
-    },
-    {
-      id: "sports",
-      label: "운동/스포츠",
-      description: "운동과 스포츠를 좋아합니다",
-    },
-    {
-      id: "travel",
-      label: "여행",
-      description: "여행을 좋아합니다",
-    },
-    {
-      id: "food",
-      label: "음식",
-      description: "맛집과 요리를 즐깁니다",
-    },
-    {
-      id: "art",
-      label: "예술/문화",
-      description: "예술과 문화에 관심이 많습니다",
-    },
-    {
-      id: "tech",
-      label: "기술/IT",
-      description: "기술과 IT에 관심이 있습니다",
-    },
-    {
-      id: "book",
-      label: "독서",
-      description: "책을 좋아합니다",
-    },
-    {
-      id: "fashion",
-      label: "패션/뷰티",
-      description: "패션과 뷰티에 관심이 있습니다",
-    },
-    {
-      id: "photography",
-      label: "사진",
-      description: "사진 촬영을 좋아합니다",
-    },
-    {
-      id: "pet",
-      label: "반려동물",
-      description: "반려동물을 키웁니다",
-    },
-  ];
-
-  const handleInterestChange = (interestId: string, checked: boolean) => {
-    if (checked) {
-      setSelectedInterests([...selectedInterests, interestId]);
-    } else {
-      setSelectedInterests(selectedInterests.filter((id) => id !== interestId));
-    }
-  };
 
   const handleSave = () => {
     // TODO: 저장 로직 구현
@@ -89,7 +18,6 @@ export default function Profile() {
       nickname,
       age,
       bio,
-      interests: selectedInterests,
     });
   };
 
@@ -192,21 +120,7 @@ export default function Profile() {
                 <p className={styles.section_description}>
                   나의 취향과 관심사를 선택해주세요.
                 </p>
-                <div className={styles.interests_grid}>
-                  {interests.map((interest) => (
-                    <div key={interest.id} className={styles.interest_card}>
-                      <Checkbox
-                        checked={selectedInterests.includes(interest.id)}
-                        onCheckedChange={(checked) =>
-                          handleInterestChange(interest.id, checked)
-                        }
-                        label={interest.label}
-                        description={interest.description}
-                        size="lg"
-                      />
-                    </div>
-                  ))}
-                </div>
+                <Category categories={categories} />
               </div>
 
               {/* 저장 버튼 */}
