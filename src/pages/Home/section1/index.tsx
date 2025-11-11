@@ -3,10 +3,10 @@ import Video from "@/components/page/home/video";
 import styles from "./styles.module.scss";
 
 export default function Section1() {
-  const [remoteStream, setRemoteStream] = useState<MediaStream | null>(null);
+  const [remoteStream, _setRemoteStream] = useState<MediaStream | null>(null);
 
   // TODO: WebRTC 연결 후 remoteStream 설정
-  // 예: setRemoteStream(stream);
+  // 예: _setRemoteStream(stream);
 
   return (
     <div className={styles.container}>
