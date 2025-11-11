@@ -15,6 +15,7 @@
   height: 100%;
   object-fit: cover;
   background: #000000;
+  transform: scaleX(-1);
 }
 
 .placeholder {
@@ -87,4 +88,43 @@
   font-weight: 500;
   margin: 0;
   text-align: center;
+}
+
+.controls {
+  position: absolute;
+  top: 56px; // video_label 아래로 배치 (16px top + 30px label 높이 + 8px 간격)
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+}
+
+.control_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }

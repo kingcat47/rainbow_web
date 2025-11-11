@@ -4,6 +4,11 @@ import styles from "./styles.module.scss";
 
 export default function Section1() {
   const [remoteStream, _setRemoteStream] = useState<MediaStream | null>(null);
+  const [isVideoOn, setIsVideoOn] = useState(true);
+
+  const handleVideoToggle = () => {
+    setIsVideoOn((prev) => !prev);
+  };
 
   // TODO: WebRTC 연결 후 remoteStream 설정
   // 예: _setRemoteStream(stream);
@@ -14,7 +19,12 @@ export default function Section1() {
         {/* 왼쪽: 본인 화면 */}
         <div className={styles.local_section}>
           <div className={styles.video_wrapper}>
-            <Video mode="camera" />
+            <Video
+              mode={isVideoOn ? "camera" : "only-voice"}
+              showControls={true}
+              onVideoToggle={handleVideoToggle}
+              isVideoOn={isVideoOn}
+            />
             <div className={styles.video_label}>나</div>
           </div>
         </div>

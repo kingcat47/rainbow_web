@@ -1,7 +1,18 @@
 import { useRef, useEffect, useState } from "react";
+import { VideoOff, Video, Smile } from "lucide-react";
 import styles from "./styles.module.scss";
 
-export default function Camera() {
+interface CameraProps {
+  showControls?: boolean;
+  onVideoToggle?: () => void;
+  isVideoOn?: boolean;
+}
+
+export default function Camera({
+  showControls = false,
+  onVideoToggle,
+  isVideoOn = true,
+}: CameraProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
 
@@ -10,7 +21,7 @@ export default function Camera() {
     const getCameraStream = async () => {
       try {
         const cameraStream = await navigator.mediaDevices.getUserMedia({
-          video: true,
+          video: isVideoOn,
           audio: true,
         });
         setStream(cameraStream);
@@ -22,7 +33,18 @@ export default function Camera() {
       }
     };
 
-    getCameraStream();
+    if (isVideoOn) {
+      getCameraStream();
+    } else {
+      // 비디오가 꺼져있을 때 스트림 정리
+      if (stream) {
+        stream.getVideoTracks().forEach((track) => track.stop());
+        setStream(null);
+      }
+      if (videoRef.current) {
+        videoRef.current.srcObject = null;
+      }
+    }
 
     // cleanup
     return () => {
@@ -30,7 +52,11 @@ export default function Camera() {
         stream.getTracks().forEach((track) => track.stop());
       }
     };
-  }, []);
+  }, [isVideoOn]);
+
+  const handleVideoToggle = () => {
+    onVideoToggle?.();
+  };
 
   return (
     <div className={styles.container}>
@@ -51,6 +77,26 @@ export default function Camera() {
             </div>
             <p className={styles.placeholder_text}>카메라 로딩 중...</p>
           </div>
+        </div>
+      )}
+      {showControls && (
+        <div className={styles.controls}>
+          <button
+            className={styles.control_button}
+            onClick={() => {
+              // TODO: 필터 기능 구현
+            }}
+            aria-label="필터"
+          >
+            <Smile size={20} />
+          </button>
+          <button
+            className={styles.control_button}
+            onClick={handleVideoToggle}
+            aria-label="카메라 끄기"
+          >
+            <Video size={20} />
+          </button>
         </div>
       )}
     </div>

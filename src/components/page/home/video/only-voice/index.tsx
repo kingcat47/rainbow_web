@@ -1,7 +1,18 @@
 import { useRef, useEffect, useState } from "react";
+import { Video, Smile, VideoOff } from "lucide-react";
 import styles from "./styles.module.scss";
 
-export default function OnlyVoice() {
+interface OnlyVoiceProps {
+  showControls?: boolean;
+  onVideoToggle?: () => void;
+  isVideoOn?: boolean;
+}
+
+export default function OnlyVoice({
+  showControls = false,
+  onVideoToggle,
+  isVideoOn = false,
+}: OnlyVoiceProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [audioStream, setAudioStream] = useState<MediaStream | null>(null);
 
@@ -77,6 +88,26 @@ export default function OnlyVoice() {
         </div>
       </div>
       <audio ref={audioRef} autoPlay playsInline />
+      {showControls && (
+        <div className={styles.controls}>
+          <button
+            className={styles.control_button}
+            onClick={() => {
+              // TODO: 필터 기능 구현
+            }}
+            aria-label="필터"
+          >
+            <Smile size={20} />
+          </button>
+          <button
+            className={styles.control_button}
+            onClick={onVideoToggle}
+            aria-label="카메라 켜기"
+          >
+            <VideoOff size={20} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
