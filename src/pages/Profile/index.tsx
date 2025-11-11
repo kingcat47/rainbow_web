@@ -10,18 +10,28 @@ import styles from "./styles.module.scss";
 export default function Profile() {
   const [nickname, setNickname] = useState("");
   const [age, setAge] = useState("");
-  const [bio, setBio] = useState("");
+  const [country, setCountry] = useState("");
+  const [gender, setGender] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  const handleCategoryToggle = (categoryId: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(categoryId)
+        ? prev.filter((id) => id !== categoryId)
+        : [...prev, categoryId]
+    );
+  };
 
   const handleSave = () => {
     // TODO: 저장 로직 구현
     console.log("Profile data:", {
       nickname,
       age,
-      bio,
+      country,
+      gender,
+      selectedCategories,
     });
   };
-
-  const isFormValid = nickname.trim() && age.trim() && bio.trim();
 
   return (
     <>
@@ -85,7 +95,6 @@ export default function Profile() {
                   />
                   <Input
                     label="나이"
-                    type="number"
                     placeholder="나이를 입력해주세요"
                     value={age}
                     onChange={(e) => setAge(e.target.value)}
@@ -96,21 +105,55 @@ export default function Profile() {
                 </div>
               </div>
 
-              {/* 자기소개 섹션 */}
+              {/* 국가 및 성별 섹션 */}
               <div className={styles.section}>
-                <h2 className={styles.section_title}>자기소개</h2>
-                <div className={styles.textarea_wrapper}>
-                  <label className={styles.textarea_label}>
-                    자기소개 <span className={styles.required}>*</span>
-                  </label>
-                  <textarea
-                    className={styles.textarea}
-                    placeholder="자신을 자유롭게 소개해주세요. 취향, 관심사, 대화 스타일 등을 적어주시면 더 좋은 매칭을 받을 수 있습니다."
-                    value={bio}
-                    onChange={(e) => setBio(e.target.value)}
-                    rows={6}
-                    required
-                  />
+                <h2 className={styles.section_title}>국가 및 성별</h2>
+                <div className={styles.form_grid}>
+                  <div className={styles.select_wrapper}>
+                    <label className={styles.select_label}>
+                      국가 <span className={styles.required}>*</span>
+                    </label>
+                    <select
+                      className={styles.select}
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                      required
+                    >
+                      <option value="">선택하지 않음</option>
+                      <option value="KR">대한민국</option>
+                      <option value="US">미국</option>
+                      <option value="JP">일본</option>
+                      <option value="CN">중국</option>
+                      <option value="GB">영국</option>
+                      <option value="FR">프랑스</option>
+                      <option value="DE">독일</option>
+                      <option value="ES">스페인</option>
+                      <option value="IT">이탈리아</option>
+                      <option value="CA">캐나다</option>
+                      <option value="AU">호주</option>
+                      <option value="BR">브라질</option>
+                      <option value="MX">멕시코</option>
+                      <option value="IN">인도</option>
+                      <option value="RU">러시아</option>
+                      <option value="OTHER">기타</option>
+                    </select>
+                  </div>
+                  <div className={styles.select_wrapper}>
+                    <label className={styles.select_label}>
+                      성별 <span className={styles.required}>*</span>
+                    </label>
+                    <select
+                      className={styles.select}
+                      value={gender}
+                      onChange={(e) => setGender(e.target.value)}
+                      required
+                    >
+                      <option value="">선택하지 않음</option>
+                      <option value="male">남성</option>
+                      <option value="female">여성</option>
+                      <option value="other">기타</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
@@ -120,7 +163,11 @@ export default function Profile() {
                 <p className={styles.section_description}>
                   나의 취향과 관심사를 선택해주세요.
                 </p>
-                <Category categories={categories} />
+                <Category
+                  categories={categories}
+                  selectedIds={selectedCategories}
+                  onCategoryToggle={handleCategoryToggle}
+                />
               </div>
 
               {/* 저장 버튼 */}
@@ -129,7 +176,6 @@ export default function Profile() {
                   variant="primary"
                   size="large"
                   onClick={handleSave}
-                  disabled={!isFormValid}
                   fullWidth
                 >
                   프로필 저장

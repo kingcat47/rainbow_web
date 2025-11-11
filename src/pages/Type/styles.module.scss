@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   max-width: 1200px;
-  height: calc(100vh - 72px);
+  height: 100%;
   padding: 60px 0;
   display: flex;
   justify-content: center;
@@ -33,10 +33,138 @@
   align-self: center;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section_title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.section_description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+// 폼 그리드
+.form_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.required {
+  color: #ff4444;
+  margin-left: 2px;
+}
+
+// Select 드롭다운
+.select_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.select_label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.select {
+  width: 100%;
+  padding: 16px;
+  padding-right: 40px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  color: #ffffff;
+  font-size: 16px;
+  font-family: "Pretendard", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+
+  option {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #00f69d;
+    box-shadow: 0 0 0 2px rgba(0, 246, 157, 0.3);
+    background-color: rgba(255, 255, 255, 0.08);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  &:hover:not(:focus) {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Input 컴포넌트 다크 테마 오버라이드
+.section :global(.container) {
+  :global(.inputWrapper) {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+
+    &:hover:not(.disabled) {
+      border-color: rgba(255, 255, 255, 0.3) !important;
+    }
+  }
+
+  :global(input) {
+    color: #ffffff !important;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.4) !important;
+    }
+  }
+}
+
+.action_buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+  max-width: 400px;
+  align-self: center;
+  width: 100%;
+}
+
 // 반응형 디자인
+@media (max-width: 1024px) {
+  .form_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 40px 0;
+    height: auto;
   }
 
   .content {
@@ -49,5 +177,25 @@
 
   .description {
     font-size: 16px;
+  }
+
+  .form {
+    gap: 32px;
+  }
+
+  .section_title {
+    font-size: 20px;
+  }
+
+  .section_description {
+    font-size: 14px;
+  }
+
+  .form_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action_buttons {
+    max-width: 100%;
   }
 }

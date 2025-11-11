@@ -9,11 +9,30 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  position: relative;
 
   &:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
+  }
+
+  &.selected {
+    background: rgba(0, 246, 157, 0.1);
+    border-color: #00f69d;
+    box-shadow: 0 0 0 2px rgba(0, 246, 157, 0.2);
+
+    .title {
+      color: #00f69d;
+    }
+
+    .description {
+      color: rgba(0, 246, 157, 0.8);
+    }
+
+    .icon {
+      color: #00f69d;
+    }
   }
 }
 
@@ -55,7 +74,7 @@
   }
 }
 
-.container:hover {
+.container:hover:not(.selected) {
   .icon {
     color: #00f69d;
   }
@@ -67,4 +86,16 @@
   .description {
     color: rgba(0, 246, 157, 0.8);
   }
+}
+
+.checkmark {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  z-index: 1;
 }

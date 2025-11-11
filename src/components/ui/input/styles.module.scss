@@ -24,8 +24,8 @@
   display: inline-flex;
   align-items: center;
   border-radius: 14px;
-  border: 1px solid #e8e8e8;
-  background-color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
   transition: all 0.2s ease-in-out;
   position: relative;
   overflow: hidden;
@@ -34,11 +34,12 @@
     outline: none;
     box-shadow: 0 0 0 2px rgba(0, 246, 157, 0.3);
     border-color: #00f69d;
+    background-color: rgba(255, 255, 255, 0.08);
   }
 
   &:hover:not(.disabled) {
-    border-color: #e8e8e8;
-    background-color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.08);
   }
 
   // Size variants
@@ -80,20 +81,22 @@
 
   // Variant styles
   &.primary {
-    border-color: #e8e8e8;
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.05);
 
     &:focus-within {
       border-color: #00f69d;
       box-shadow: 0 0 0 2px rgba(0, 246, 157, 0.3);
+      background-color: rgba(255, 255, 255, 0.08);
     }
   }
 
   &.secondary {
-    background-color: #f5f5f5;
-    border-color: #e8e8e8;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
 
     &:focus-within {
-      background-color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.15);
       border-color: #00f69d;
       box-shadow: 0 0 0 2px rgba(0, 246, 157, 0.3);
     }
@@ -111,16 +114,16 @@
 
   // Disabled state
   &.disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
-    background-color: #f5f5f5;
+    background-color: rgba(255, 255, 255, 0.03);
 
     &.primary {
-      background-color: #f5f5f5;
+      background-color: rgba(255, 255, 255, 0.03);
     }
 
     &.secondary {
-      background-color: #f5f5f5;
+      background-color: rgba(255, 255, 255, 0.05);
     }
   }
 }
@@ -132,15 +135,16 @@
   background: transparent;
   font-size: 14px;
   line-height: 1.4;
-  color: #000000;
+  color: #ffffff;
+  font-family: "Pretendard", sans-serif;
 
   &::placeholder {
-    color: #7d7d7d;
+    color: rgba(255, 255, 255, 0.4);
   }
 
   &:disabled {
     cursor: not-allowed;
-    color: #7d7d7d;
+    color: rgba(255, 255, 255, 0.4);
   }
 
   .large & {
@@ -154,7 +158,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #7d7d7d;
+  color: rgba(255, 255, 255, 0.7);
   transition: color 0.2s ease-in-out;
 
   svg {
